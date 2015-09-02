@@ -1,8 +1,14 @@
 FROM frvi/ruby
 
-MAINTAINER Fredrik Vihlborg <fredrik.wihlborg@gmail.com>
+MAINTAINER Sebastiaan Renkens <srenkens@gmail.com>
 
 RUN gem install bundle dashing
+
+RUN apt-get -y update
+RUN apt-get -y install debian-archive-keyring
+RUN apt-get -y install patch
+RUN gem install bundle nokogiri
+
 RUN mkdir /dashing && \
     dashing new dashing && \
     cd /dashing && bundle && \
